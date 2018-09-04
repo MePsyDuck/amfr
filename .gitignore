@@ -1,6 +1,4 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
 *$py.class
 
 # C extensions
@@ -14,7 +12,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
@@ -22,7 +19,6 @@ var/
 wheels/
 *.egg-info/
 .installed.cfg
-*.egg
 MANIFEST
 
 # PyInstaller
@@ -35,7 +31,7 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# Unit tests / coverage reports
 htmlcov/
 .tox/
 .coverage
@@ -102,3 +98,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.idea/
+facial_recog/cascades/
+facial_recog/db/
+facial_recog/fr_results/
+facial_recog/training_dataset/
+webserver/app/templates/
