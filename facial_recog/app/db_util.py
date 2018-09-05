@@ -1,10 +1,10 @@
 import sqlite3
 
-from facial_recog.app.config import db, default_db, tables
+from .config import db, use_db, tables
 
 
 def get_connection():
-    conn = sqlite3.connect(db[default_db]['host'])
+    conn = sqlite3.connect(db[use_db]['host'])
     return conn
 
 
@@ -19,6 +19,11 @@ def execute_select(stmt):
 
 def all_subjects_for_class(class_id):
     stmt = "SELECT `vtuID` FROM `class` WHERE `classID` = " + str(class_id)
+    return execute_select(stmt=stmt)
+
+
+def get_subject_by_id(sub_id):
+    stmt = "SELECT `vtuID` FROM `class` WHERE `id` = " + str(sub_id)
     return execute_select(stmt=stmt)
 
 
