@@ -5,3 +5,4 @@ TODO:
 * Tests
 * Docker support
 * MongoDB
+* Make static paths platform independent
