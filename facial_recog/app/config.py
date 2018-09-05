@@ -22,8 +22,18 @@ tables = {
 }
 
 cascade_dir = {
-    'lbp': "facial_recog/cascades/lbp",
+    'lbp': "facial_recog/cascades/lbp/",
+    'haar': 'facial_recog/cascades/haar/',
 }
 
-default_db = 'sqlite3'
-default_method = 'lbp'
+recog_dir = {
+    'lbph': "facial_recog/recognizers/lbph/",
+    'eigen': "facial_recog/recognizers/eigen/",
+    'fisher': "facial_recog/recognizers/fisher/",
+}
+
+use_db = 'sqlite3'
+
+detect_method = 'lbp'
+
+recog_method = 'lbph'
