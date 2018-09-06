@@ -1,6 +1,8 @@
+import os
+
 db = {
     'sqlite3': {
-        'host': 'facial_recog/db/master.sqlite',
+        'host': os.path.join('facial_recog  ', 'db', 'master.sqlite'),
         'user': '',
         'passwd': '',
         'db': 'master',
@@ -22,14 +24,14 @@ tables = {
 }
 
 cascade_dir = {
-    'lbp': "facial_recog/cascades/lbp/",
-    'haar': 'facial_recog/cascades/haar/',
+    'lbp': os.path.join('facial_recog', 'cascades', 'lbp'),
+    'haar': os.path.join('facial_recog', 'cascades', 'haar'),
 }
 
 recog_dir = {
-    'lbph': "facial_recog/recognizers/lbph/",
-    'eigen': "facial_recog/recognizers/eigen/",
-    'fisher': "facial_recog/recognizers/fisher/",
+    'lbph': os.path.join('facial_recog', 'recognizers', 'lbph'),
+    'eigen': os.path.join('facial_recog', 'recognizers', 'eigen'),
+    'fisher': os.path.join('facial_recog', 'recognizers', 'fisher'),
 }
 
 use_db = 'sqlite3'

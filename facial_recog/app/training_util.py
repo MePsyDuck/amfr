@@ -13,8 +13,8 @@ def prepare_training_data(class_id):
     subjects = get_class_subjects(class_id)
 
     for subject in subjects:
-        subject_dir_path = cascade_dir[detect_method] + os.pathsep + subject
-        subject_images = os.listdir(subject_dir_path)
+        subject_loc = os.path.join(cascade_dir[detect_method], subject)
+        subject_images = os.listdir(subject_loc)
 
         if subject_images in None:
             print("No images found for subject: " + subject)
@@ -23,8 +23,8 @@ def prepare_training_data(class_id):
                 if image_name.startswith("."):
                     continue
 
-                image_path = subject_dir_path + "/" + image_name
-                image = cv2.imread(image_path)
+                image_loc = os.path.join(subject_loc, image_name)
+                image = cv2.imread(image_loc)
 
                 face, rect = detect_face(img=image, class_id=class_id)
 
