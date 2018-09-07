@@ -1,10 +1,17 @@
+import logging
 import sqlite3
 
 from .config import db, use_db, tables
 
 
 def get_connection():
-    conn = sqlite3.connect(db[use_db]['host'])
+    db_loc = db[use_db]['host']
+    conn = None
+    try:
+        conn = sqlite3.connect(db_loc)
+        logging.debug('Connected to %s', db_loc)
+    except sqlite3.OperationalError:
+        logging.critical('Could not connect to %s', db_loc)
     return conn
 
 
@@ -12,18 +19,19 @@ def execute_select(stmt):
     conn = get_connection()
     c = conn.cursor()
     c.execute(stmt)
+    logging.debug('Executing %s', stmt)
     results = c.fetchall()
     conn.close()
     return results
 
 
 def all_subjects_for_class(class_id):
-    stmt = "SELECT `vtuID` FROM `class` WHERE `classID` = " + str(class_id)
+    stmt = 'SELECT `vtuID` FROM `class` WHERE `classID` = ' + str(class_id)
     return execute_select(stmt=stmt)
 
 
 def get_subject_by_id(sub_id):
-    stmt = "SELECT `vtuID` FROM `class` WHERE `id` = " + str(sub_id)
+    stmt = 'SELECT `vtuID` FROM `class` WHERE `id` = ' + str(sub_id)
     return execute_select(stmt=stmt)
 
 
@@ -32,12 +40,14 @@ def recreate_db():
     c = conn.cursor()
 
     for table in tables:
-        stmt = "DROP TABLE IF EXISTS " + tables[table]['name']
+        stmt = 'DROP TABLE IF EXISTS ' + tables[table]['name']
+        logging.info('Dropping table %s', tables[table]['name'])
         c.execute(stmt)
-        stmt = "CREATE TABLE " + tables[table]['name'] + "("
+        stmt = 'CREATE TABLE ' + tables[table]['name'] + '('
         for column in tables[table]['columns']:
-            stmt = stmt + column + ","
-        stmt = stmt[:-1] + ")"
+            stmt = stmt + column + ','
+        stmt = stmt[:-1] + ')'
+        logging.info('Creating table %s', tables[table]['name'])
         c.execute(stmt)
 
     conn.commit()
