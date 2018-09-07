@@ -48,7 +48,6 @@ coverage.xml
 *.pot
 
 # Django stuff:
-*.log
 local_settings.py
 db.sqlite3
 
@@ -103,4 +102,4 @@ facial_recog/cascades/
 facial_recog/db/
 facial_recog/fr_results/
 facial_recog/training_dataset/
-webserver/app/templates/
+logs/

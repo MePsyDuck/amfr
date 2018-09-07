@@ -1,3 +1,4 @@
+import logging
 import os
 
 import numpy as np
@@ -11,5 +12,7 @@ def trainer(class_id):
     recognizer_loc = os.path.join(recog_dir[recog_method], class_id + ".xml")
     face_recognizer = get_recognizer()
     faces, labels = prepare_training_data(class_id)
+    logging.info('Training recognizer for class %d', class_id)
     face_recognizer.train(faces, np.array(labels))
+    logging.info('Recognizer saved at %s', recognizer_loc)
     face_recognizer.save(recognizer_loc)

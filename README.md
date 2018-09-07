@@ -1,6 +1,6 @@
 TODO:
 * Add flask webapp
-* Logger
 * Tests
 * Docker support
 * MongoDB
+* Make SQL injection safe

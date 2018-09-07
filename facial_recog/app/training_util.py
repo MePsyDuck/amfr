@@ -1,3 +1,4 @@
+import logging
 import os
 
 import cv2
@@ -17,10 +18,12 @@ def prepare_training_data(class_id):
         subject_images = os.listdir(subject_loc)
 
         if subject_images in None:
-            print("No images found for subject: " + subject)
+            logging.critical('No images found for subject %s', str(subject))
         else:
+            logging.info('Found %d images for subject %s', len(subject_images), str(subject))
             for image_name in subject_images:
-                if image_name.startswith("."):
+                if image_name.startswith('.'):
+                    logging.debug('Ignoring file %s', image_name)
                     continue
 
                 image_loc = os.path.join(subject_loc, image_name)
@@ -29,7 +32,10 @@ def prepare_training_data(class_id):
                 face, rect = detect_face(img=image, class_id=class_id)
 
                 if face is not None:
+                    logging.debug('Adding face found with label %s', str(subject))
                     faces.append(face)
                     labels.append(subject)
+                else:
+                    logging.warning('No faces found for subject %s in image %s', str(subject), image_name)
 
     return faces, subjects
