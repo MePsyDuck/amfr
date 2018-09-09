@@ -2,7 +2,7 @@ import os
 
 db = {
     'sqlite3': {
-        'host': os.path.join('facial_recog  ', 'db', 'master.sqlite'),
+        'host': os.path.join('facial_recog', 'db', 'master.sqlite'),
         'user': '',
         'passwd': '',
         'db': 'master',
@@ -33,6 +33,10 @@ recog_dir = {
     'eigen': os.path.join('facial_recog', 'recognizers', 'eigen'),
     'fisher': os.path.join('facial_recog', 'recognizers', 'fisher'),
 }
+
+training_dir = os.path.join('facial_recog', 'training_dataset')
+
+log_dir = os.path.join('logs')
 
 use_db = 'sqlite3'
 

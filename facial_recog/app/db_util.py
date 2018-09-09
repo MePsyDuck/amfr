@@ -18,8 +18,8 @@ def get_connection():
 def execute_select(stmt):
     conn = get_connection()
     c = conn.cursor()
-    c.execute(stmt)
     logging.debug('Executing %s', stmt)
+    c.execute(stmt)
     results = c.fetchall()
     conn.close()
     return results
@@ -52,3 +52,17 @@ def recreate_db():
 
     conn.commit()
     conn.close()
+
+
+def execute_update(stmt):
+    conn = get_connection()
+    c = conn.cursor()
+    logging.debug('Executing %s', stmt)
+    c.execute(stmt)
+    conn.commit()
+    conn.close()
+
+
+def add_subject_to_class(sub_id, class_id):
+    stmt = 'INSERT INTO `class`(`vtuID`,`classID`) VALUES(' + str(sub_id) + ',' + str(class_id) + ')'
+    execute_update(stmt=stmt)
