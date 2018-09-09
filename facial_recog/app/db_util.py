@@ -20,6 +20,7 @@ def execute_select(stmt):
     c = conn.cursor()
     logging.debug('Executing %s', stmt)
     c.execute(stmt)
+    logging.debug('Executing %s', stmt)
     results = c.fetchall()
     conn.close()
     return results
