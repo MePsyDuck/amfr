@@ -23,6 +23,11 @@ tables = {
     },
 }
 
+cascade = {
+    'lbp': '',
+    'haar': '',
+}
+
 cascade_dir = {
     'lbp': os.path.join('facial_recog', 'cascades', 'lbp'),
     'haar': os.path.join('facial_recog', 'cascades', 'haar'),
