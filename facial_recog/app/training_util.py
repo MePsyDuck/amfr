@@ -29,7 +29,7 @@ def prepare_training_data(class_id):
                 image_loc = os.path.join(subject_loc, image_name)
                 image = cv2.imread(image_loc)
 
-                face, rect = detect_face(img=image, class_id=class_id)
+                face, rect = detect_face(img=image)
 
                 if face is not None:
                     logging.debug('Adding face found with label %s', str(subject))

@@ -3,13 +3,13 @@ import os
 
 import cv2
 
-from .config import cascade_dir, detect_method
+from .config import cascade_dir, detect_method, cascade
 
 
-def detect_face(img, class_id):
+def detect_face(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    cascade_loc = os.path.join(cascade_dir[detect_method], class_id + '.xml')
+    cascade_loc = os.path.join(cascade_dir[detect_method], cascade[detect_method])
     face_cascade = cv2.CascadeClassifier(cascade_loc)
     faces = face_cascade.detectMultiScale(image=gray, scaleFactor=1.2, minNeighbors=5)
 

@@ -24,8 +24,8 @@ tables = {
 }
 
 cascade = {
-    'lbp': '',
-    'haar': '',
+    'lbp': 'lbpcascade_frontalface_improved.xml',
+    'haar': 'haarcascade_frontalface_default.xml',
 }
 
 cascade_dir = {
