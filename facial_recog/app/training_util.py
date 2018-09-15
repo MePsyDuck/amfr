@@ -4,7 +4,7 @@ import os
 import cv2
 
 from .config import cascade_dir, detect_method
-from .face_detection import detect_face
+from .face_detection import detect_faces
 from .util import get_class_subjects
 
 
@@ -29,11 +29,11 @@ def prepare_training_data(class_id):
                 image_loc = os.path.join(subject_loc, image_name)
                 image = cv2.imread(image_loc)
 
-                face, rect = detect_face(img=image)
+                faces = detect_faces(img=image)
 
-                if face is not None:
+                if faces is not None:
                     logging.debug('Adding face found with label %s', str(subject))
-                    faces.append(face)
+                    faces.append(faces)
                     labels.append(subject)
                 else:
                     logging.warning('No faces found for subject %s in image %s', str(subject), image_name)
