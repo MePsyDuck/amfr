@@ -99,7 +99,8 @@ venv.bak/
 .mypy_cache/
 .idea/
 # facial_recog/cascades/
-facial_recog/db/
-facial_recog/fr_results/
-facial_recog/training_dataset/
-logs/
+/facial_recog/db/
+/facial_recog/fr_results/
+/facial_recog/training_dataset/
+/logs/
+/facial_recog/recognizers/
