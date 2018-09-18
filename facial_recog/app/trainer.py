@@ -15,4 +15,4 @@ def train(class_id):
     logging.info('Training recognizer for class %d', class_id)
     face_recognizer.train(faces, np.array(labels))
     logging.info('Recognizer saved at %s', recognizer_loc)
-    face_recognizer.save(recognizer_loc)
+    face_recognizer.write(recognizer_loc)

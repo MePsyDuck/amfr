@@ -67,3 +67,8 @@ def execute_update(stmt):
 def add_subject_to_class(sub_id, class_id):
     stmt = 'INSERT INTO `class`(`vtuID`,`classID`) VALUES(' + str(sub_id) + ',' + str(class_id) + ')'
     execute_update(stmt=stmt)
+
+
+def all_classes():
+    stmt = 'SELECT DISTINCT `classID` FROM `class`'
+    return execute_select(stmt=stmt)

@@ -3,11 +3,12 @@ import os
 
 import cv2
 
+from facial_recog.app.util import rgb_to_gray
 from .config import cascade_dir, detect_method, cascade
 
 
 def detect_faces(img):
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray = rgb_to_gray(img=img)
 
     cascade_loc = os.path.join(cascade_dir[detect_method], cascade[detect_method])
     face_cascade = cv2.CascadeClassifier(cascade_loc)
@@ -17,5 +18,16 @@ def detect_faces(img):
         logging.warning('No faces found in image')
         return None
     else:
-        logging.info('%d faces found')
-        return faces
+        logging.info('%d faces found', len(faces))
+        face_imgs = []
+        for face in faces:
+            x, y, w, h = [v for v in face]
+            face_imgs.append(rgb_to_gray(img[y:y + h, x:x + w]))
+        return face_imgs
+
+
+def detect_face(img):
+    if detect_faces(img=img) is not None:
+        return detect_faces(img=img)[0]
+    else:
+        return None

@@ -3,21 +3,21 @@ import os
 
 import cv2
 
-from .config import cascade_dir, detect_method
-from .face_detection import detect_faces
+from .config import training_dir
+from .face_detection import detect_face
 from .util import get_class_subjects
 
 
 def prepare_training_data(class_id):
-    faces = []
-    labels = []
+    all_faces = []
+    all_labels = []
     subjects = get_class_subjects(class_id)
 
     for subject in subjects:
-        subject_loc = os.path.join(cascade_dir[detect_method], subject)
+        subject_loc = os.path.join(training_dir, str(subject))
         subject_images = os.listdir(subject_loc)
 
-        if subject_images in None:
+        if subject_images is None:
             logging.critical('No images found for subject %s', str(subject))
         else:
             logging.info('Found %d images for subject %s', len(subject_images), str(subject))
@@ -29,13 +29,14 @@ def prepare_training_data(class_id):
                 image_loc = os.path.join(subject_loc, image_name)
                 image = cv2.imread(image_loc)
 
-                faces = detect_faces(img=image)
+                face = detect_face(img=image)
 
-                if faces is not None:
-                    logging.debug('Adding face found with label %s', str(subject))
-                    faces.append(faces)
-                    labels.append(subject)
+                if face is not None:
+                    logging.debug('Adding face found in image %s with label %d', image_name, subject)
+                    all_faces.append(face)
+                    all_labels.append(subject)
+
                 else:
-                    logging.warning('No faces found for subject %s in image %s', str(subject), image_name)
+                    logging.warning('No faces found in image %s for label %d', image_name, subject)
 
-    return faces, subjects
+    return all_faces, all_labels

@@ -2,14 +2,14 @@ import os
 import random
 import shutil
 
-from .config import training_dir
+from .config import training_dir, recog_dir
 from .db_util import add_subject_to_class
 
 
-def copy_dataset(imfdb_loc, subject_names, image_count):
+def copy_dataset(fdb_loc, subject_names, image_count):
     for subject in subject_names:
         subject_dir = os.path.join(training_dir, str(subject))
-        subject_images = get_images_for_subject(imfdb_loc=imfdb_loc, subject_name=subject_names[subject])
+        subject_images = get_images_for_subject(fdb_loc=fdb_loc, subject_name=subject_names[subject])
         sample_images = random.sample(subject_images, image_count)
 
         if not os.path.exists(subject_dir):
@@ -24,8 +24,10 @@ def populate_db(subject_classes):
         add_subject_to_class(subject_id, subject_classes[subject_id])
 
 
-def create_sample(imfdb_loc, subject_count, class_count):
-    all_subjects = os.listdir(imfdb_loc)
+def create_sample(fdb_loc, subject_count, class_count):
+    subdir = os.path.join(fdb_loc, 'male')
+    all_subjects = os.listdir(os.path.join(fdb_loc, subdir))
+
     sample_subjects = random.sample(all_subjects, subject_count)
     sample_ids = random.sample(range(subject_count * 10), subject_count)
     sample_classes = [random.randint(1, class_count) for _ in range(subject_count)]
@@ -42,16 +44,21 @@ def clear_dataset():
         pass
 
 
-def get_images_for_subject(imfdb_loc, subject_name):
-    subject_movies = []
-    for movie in os.listdir(os.path.join(imfdb_loc, subject_name)):
-        if os.path.isdir(os.path.join(imfdb_loc, subject_name, movie)):
-            subject_movies.append(movie)
-
+def get_images_for_subject(fdb_loc, subject_name):
     subject_images = []
 
-    for movie in subject_movies:
-        for image in os.listdir(os.path.join(imfdb_loc, subject_name, movie, 'images')):
-            subject_images.append(os.path.join(imfdb_loc, subject_name, movie, 'images', image))
+    subject_dir = os.path.join(fdb_loc, 'male', subject_name)
+
+    for image in os.listdir(subject_dir):
+        subject_images.append(os.path.join(subject_dir, image))
 
     return subject_images
+
+
+def clear_recognizers():
+    for subdir in recog_dir:
+        try:
+            shutil.rmtree(recog_dir[subdir])
+        except FileNotFoundError:
+            pass
+        os.mkdir(recog_dir[subdir])
