@@ -12,5 +12,8 @@ install:
 virtualenv:
   system_site_package: true
 
+before_script:
+- cd ..
+
 script:
   python -m unittest facial_recog/tests/test_app.py
