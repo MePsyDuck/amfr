@@ -11,7 +11,7 @@ def get_connection():
         conn = sqlite3.connect(db_loc)
         logging.debug('Connected to %s', db_loc)
     except sqlite3.OperationalError as e:
-        print(e)
+        print(db_loc + e)
         logging.critical('Could not connect to %s', db_loc)
     return conn
 
