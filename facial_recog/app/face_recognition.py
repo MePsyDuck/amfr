@@ -10,8 +10,11 @@ def predict(img, class_id):
     recognizer_loc = os.path.join(recog_dir[recog_method], str(class_id) + ".xml")
     logging.info('Using recognizer %s', recognizer_loc)
     face = detect_face(img=img)
-    face_recognizer = get_recognizer()
-    face_recognizer.read(recognizer_loc)
-    label, confidence = face_recognizer.predict(face)
-    logging.info('Predicted %s with confidence %s', str(label), str(confidence))
-    return label
+    if face is not None:
+        face_recognizer = get_recognizer()
+        face_recognizer.read(recognizer_loc)
+        label, confidence = face_recognizer.predict(face)
+        logging.info('Predicted %s with confidence %s', str(label), str(confidence))
+        return label
+    else:
+        logging.critical('No face detected, cannot predict')
