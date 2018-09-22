@@ -13,6 +13,8 @@ class TestFR(unittest.TestCase):
     def setUp(self):
         setup_logger()
 
+        print(os.getcwd())
+
         # only for super strict testing
         # clear_fdb()
         prepare_fdb()
