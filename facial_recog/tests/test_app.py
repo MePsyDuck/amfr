@@ -14,7 +14,7 @@ class TestFR(unittest.TestCase):
         setup_logger()
 
         # only for super strict testing
-        clear_fdb()
+        # clear_fdb()
         prepare_fdb()
 
         self.subject_names, self.subject_classes = create_sample()
@@ -36,7 +36,6 @@ class TestFR(unittest.TestCase):
         random_image = random.choice(
             get_images_for_subject(subject_name=self.subject_names[random_subject]))
 
-        print(random_class, random_subject, random_image)
         self.assertEqual(predict(img=cv2.imread(random_image), class_id=random_class), random_subject)
 
 
