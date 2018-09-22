@@ -2,8 +2,8 @@ import logging
 
 import cv2
 
-from facial_recog.app.config import recog_method
-from facial_recog.app.db_util import all_subjects_for_class, all_classes
+from .config import recog_method
+from .db_util import all_subjects_for_class, all_classes
 
 
 def get_recognizer():

@@ -3,8 +3,8 @@ import os
 
 import cv2
 
-from facial_recog.app.util import rgb_to_gray
 from .config import cascade_dir, detect_method, cascade
+from .util import rgb_to_gray
 
 
 def detect_faces(img):
