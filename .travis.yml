@@ -13,5 +13,4 @@ virtualenv:
   system_site_package: true
 
 script:
-- cd ..
 - python -m unittest discover facial_recog "test_app.py"

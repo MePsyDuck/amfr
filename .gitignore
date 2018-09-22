@@ -103,3 +103,5 @@ venv.bak/
 /logs/
 /facial_recog/recognizers/
 /test_src/
+facial_recog/app/__pycache__/
+facial_recog/tests/__pycache__/
