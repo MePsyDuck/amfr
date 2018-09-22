@@ -1,8 +1,10 @@
 import os
 
+db_dir = os.path.join('facial_recog', 'db')
+
 db = {
     'sqlite3': {
-        'host': os.path.join('facial_recog', 'db', 'master.sqlite'),
+        'host': os.path.join(db_dir, 'master.sqlite'),
         'user': '',
         'passwd': '',
         'db': 'master',
