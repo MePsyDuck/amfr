@@ -1,21 +1,17 @@
 import logging
-import os
 import sqlite3
 
-from .config import db, use_db, tables, db_dir
+from .config import db, use_db, tables
 
 
 def get_connection():
-    if not os.path.exists(db_dir):
-        os.mkdir(db_dir)
-
     db_loc = db[use_db]['host']
     conn = None
     try:
         conn = sqlite3.connect(db_loc)
         logging.debug('Connected to %s', db_loc)
     except sqlite3.OperationalError as e:
-        logging.critical('Could not connect to %s', db_loc)
+        logging.critical('Could not connect to %s: %s', db_loc, str(e))
     return conn
 
 
