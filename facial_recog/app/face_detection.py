@@ -27,7 +27,8 @@ def detect_faces(img):
 
 
 def detect_face(img):
-    if detect_faces(img=img) is not None:
-        return detect_faces(img=img)[0]
+    faces = detect_faces(img=img)
+    if faces is not None:
+        return faces[0]
     else:
         return None
