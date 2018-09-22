@@ -17,7 +17,6 @@ parts/
 sdist/
 var/
 wheels/
-*.egg-info/
 .installed.cfg
 MANIFEST
 
@@ -44,7 +43,6 @@ coverage.xml
 .pytest_cache/
 
 # Translations
-*.mo
 *.pot
 
 # Django stuff:
@@ -104,3 +102,4 @@ venv.bak/
 /facial_recog/training_dataset/
 /logs/
 /facial_recog/recognizers/
+/test_src/

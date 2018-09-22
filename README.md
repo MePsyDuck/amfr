@@ -5,3 +5,5 @@ TODO:
 * Docker support
 * MongoDB
 * Make SQL injection safe
+
+Test Data from http://cmp.felk.cvut.cz/~spacelib/faces/
