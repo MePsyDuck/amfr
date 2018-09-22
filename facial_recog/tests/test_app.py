@@ -2,7 +2,8 @@ import unittest
 
 import cv2
 
-from facial_recog.app import setup_logger, recreate_db, get_all_classes, train, get_class_subjects, predict
+from facial_recog.app import setup_logger, recreate_db, get_all_classes, train, get_class_subjects, predict, \
+    create_app_dirs
 from .test_util import *
 
 
@@ -11,9 +12,8 @@ class TestFR(unittest.TestCase):
     subject_classes = dict()
 
     def setUp(self):
+        create_app_dirs()
         setup_logger()
-
-        print(os.getcwd())
 
         # only for super strict testing
         # clear_fdb()

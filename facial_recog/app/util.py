@@ -1,8 +1,9 @@
 import logging
+import os
 
 import cv2
 
-from .config import recog_method
+from .config import recog_method, db_dir, log_dir, recog_dir, training_dir
 from .db_util import all_subjects_for_class, all_classes
 
 
@@ -30,3 +31,17 @@ def get_all_classes():
 
 def rgb_to_gray(img):
     return cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+
+def create_app_dirs():
+    if not os.path.exists(db_dir):
+        os.makedirs(db_dir)
+
+    if not os.path.exists(log_dir):
+        os.makedirs(log_dir)
+
+    if not os.path.exists(recog_dir[recog_method]):
+        os.makedirs(recog_dir[recog_method])
+
+    if not os.path.exists(training_dir):
+        os.makedirs(training_dir)

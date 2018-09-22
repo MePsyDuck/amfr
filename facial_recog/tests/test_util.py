@@ -63,7 +63,7 @@ def clear_recognizers():
             shutil.rmtree(recog_dir[subdir])
         except FileNotFoundError:
             pass
-        os.mkdir(recog_dir[subdir])
+        os.makedirs(recog_dir[subdir])
 
 
 def download_fdb():
@@ -78,7 +78,7 @@ def unzip_fdb():
 
 def prepare_fdb():
     if not os.path.exists(test_src_dir):
-        os.mkdir(test_src_dir)
+        os.makedirs(test_src_dir)
 
     if len(os.listdir(test_src_dir)) == 0:
         download_fdb()
