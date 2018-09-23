@@ -39,7 +39,3 @@ class TestFR(unittest.TestCase):
             get_images_for_subject(subject_name=self.subject_names[random_subject]))
 
         self.assertEqual(predict(img=cv2.imread(random_image), class_id=random_class), random_subject)
-
-
-if __name__ == '__main__':
-    unittest.main()
