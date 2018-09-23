@@ -1,3 +1,8 @@
+Attendance Monitoring using Facial Recognition
+
+[![Build Status](https://travis-ci.org/MePsyDuck/amfr.svg?branch=master)](https://travis-ci.org/MePsyDuck/amfr)
+
+
 TODO:
 * Add Tkinter
 * Add Travis CI
