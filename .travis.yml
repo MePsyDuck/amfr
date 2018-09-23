@@ -10,7 +10,6 @@ before_install:
 - sudo apt-get update
 - sudo apt-get install libhdf5-serial-dev libqtgui4
 
-
 install:
 - pip install -r requirements.txt
 
