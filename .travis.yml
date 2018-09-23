@@ -3,6 +3,9 @@ language: python
 python:
 - "3.6"
 
+env:
+- CODECOV_TOKEN = "e0c50cd9-bd0b-49fd-8f73-926ce9ba0d78"
+
 before_install:
 - sudo apt-get update
 
@@ -14,7 +17,7 @@ virtualenv:
   system_site_package: true
 
 script:
-- coverage run -m unittest facial_recog/tests/test_app.
+- coverage run test.py
 
 after_success:
 - codecov
