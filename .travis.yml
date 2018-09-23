@@ -7,6 +7,7 @@ before_install:
 - sudo apt-get update
 
 install:
+- pip install codecov
 - pip install -r requirements.txt
 
 virtualenv:
@@ -15,3 +16,5 @@ virtualenv:
 script:
 - python -m unittest facial_recog/tests/test_app.py
 
+after_success:
+- codecov
