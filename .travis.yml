@@ -14,7 +14,7 @@ virtualenv:
   system_site_package: true
 
 script:
-- python -m unittest facial_recog/tests/test_app.py
+- coverage run -m unittest facial_recog\tests\test_app.
 
 after_success:
 - codecov
