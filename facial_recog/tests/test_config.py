@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 fdb_urls = {
     # In increasing order of difficulty -> faces94 < faces 95 < faces96 < grimace
@@ -22,3 +23,9 @@ subject_count = 10
 class_count = 2
 
 image_count = 10
+
+seed = datetime.now()
+
+test_run_count = 10
+
+success_perc = 0.7
