@@ -1,9 +1,6 @@
 import unittest
 
-import cv2
-
-from facial_recog.app import setup_logger, recreate_db, get_all_classes, train, get_class_subjects, predict, \
-    create_app_dirs
+from facial_recog.app import *
 from .test_config import test_run_count, seed, success_perc
 from .test_util import *
 
@@ -43,7 +40,7 @@ class TestFR(unittest.TestCase):
             random_image = random.choice(
                 get_images_for_subject(subject_name=self.subject_names[random_subject]))
 
-            if predict(img=cv2.imread(random_image), class_id=random_class) == random_subject:
+            if predict(img=path_to_img(random_image), class_id=random_class) == random_subject:
                 success += 1
 
         self.assertGreaterEqual(success, int(success_perc * test_run_count))

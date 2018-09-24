@@ -18,3 +18,4 @@ def predict(img, class_id):
         return label
     else:
         logging.critical('No face detected, cannot predict')
+        return None

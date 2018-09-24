@@ -45,3 +45,7 @@ def create_app_dirs():
 
     if not os.path.exists(training_dir):
         os.makedirs(training_dir)
+
+
+def path_to_img(image_path):
+    return cv2.imread(image_path)
