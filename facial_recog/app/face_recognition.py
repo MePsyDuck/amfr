@@ -1,7 +1,7 @@
 import logging
 import os
 
-from .config import recog_dir, recog_method
+from .config import recog_dir, recog_method, confidence_threshold
 from .face_detection import detect_face
 from .util import get_recognizer
 
@@ -15,7 +15,12 @@ def predict(img, class_id):
         face_recognizer.read(recognizer_loc)
         label, confidence = face_recognizer.predict(face)
         logging.info('Predicted %s with confidence %s', str(label), str(confidence))
-        return label
+        if confidence > confidence_threshold:
+            logging.info('Subject belongs to the class')
+            return label
+        else:
+            logging.info('Subject does not belong to the class')
+            return None
     else:
         logging.critical('No face detected, cannot predict')
         return None

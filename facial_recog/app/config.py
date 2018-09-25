@@ -50,3 +50,5 @@ use_db = 'sqlite3'
 detect_method = 'lbp'
 
 recog_method = 'lbph'
+
+confidence_threshold = 50.0
