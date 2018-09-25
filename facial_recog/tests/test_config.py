@@ -28,4 +28,4 @@ seed = datetime.now()
 
 test_run_count = 10
 
-success_perc = 0.7
+success_perc = 0.6

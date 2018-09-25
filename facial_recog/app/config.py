@@ -51,4 +51,4 @@ detect_method = 'lbp'
 
 recog_method = 'lbph'
 
-confidence_threshold = 50.0
+confidence_threshold = 75.0
