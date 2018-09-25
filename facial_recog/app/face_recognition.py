@@ -15,7 +15,7 @@ def predict(img, class_id):
         face_recognizer.read(recognizer_loc)
         label, confidence = face_recognizer.predict(face)
         logging.info('Predicted %s with confidence %s', str(label), str(confidence))
-        if confidence > confidence_threshold:
+        if confidence < confidence_threshold:
             logging.info('Subject belongs to the class')
             return label
         else:
