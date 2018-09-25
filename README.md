@@ -20,5 +20,7 @@
 ### TODO:
 * MongoDB
 * Make SQL injection safe
+* Add db schemas for attendance
+* Live video feed support
 
 Test Data from http://cmp.felk.cvut.cz/~spacelib/faces/
