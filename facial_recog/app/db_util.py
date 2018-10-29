@@ -49,6 +49,7 @@ def recreate_db():
             stmt = stmt + column + ','
         stmt = stmt[:-1] + ')'
         logging.info('Creating table %s', tables[table]['name'])
+        logging.debug(stmt)
         c.execute(stmt)
 
     conn.commit()
@@ -72,3 +73,31 @@ def add_subject_to_class(sub_id, class_id):
 def all_classes():
     stmt = 'SELECT DISTINCT `classID` FROM `class`'
     return execute_select(stmt=stmt)
+
+
+def stud_name_for_id(vtu_id):
+    stmt = 'SELECT `studName` FROM `student` WHERE `vtuID` =' + str(vtu_id)
+    name = execute_select(stmt)
+    return name[0][0]
+
+
+def class_name_for_id(class_id):
+    stmt = 'SELECT `className` FROM `courses` WHERE `classID` =' + str(class_id)
+    name = execute_select(stmt)
+    return name[0][0]
+
+
+def add_student(vtu_id, stud_name):
+    stmt = 'INSERT INTO `student`(`vtuID`,`studName`) VALUES(' + str(vtu_id) + ',' + str(stud_name) + ')'
+    execute_update(stmt=stmt)
+
+
+def add_course(course_id, course_name):
+    stmt = 'INSERT INTO `courses`(`classID`,`className`) VALUES(' + str(course_id) + ',' + str(course_name) + ')'
+    execute_update(stmt=stmt)
+
+
+def add_attendance(course_id, vtu_id, hour_id):
+    stmt = 'INSERT INTO `attendance`(`classID`,`vtuID`,`hourID`) VALUES(' + str(course_id) + ',' + str(
+        vtu_id) + ',' + str(hour_id) + ')'
+    execute_update(stmt=stmt)

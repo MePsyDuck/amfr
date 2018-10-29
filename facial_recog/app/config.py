@@ -23,6 +23,18 @@ tables = {
         'name': 'class',
         'columns': ('id INT PRIMARY KEY', 'vtuID INT', 'classID INT',),
     },
+    'student': {
+        'name': 'student',
+        'columns': ('id INT PRIMARY KEY', 'vtuID INT', 'studName VARCHAR(20)',),
+    },
+    'attendance': {
+        'name': 'attendance',
+        'columns': ('id INT PRIMARY KEY', 'classID INT', 'vtuID INT', 'hourID INT',),
+    },
+    'courses': {
+        'name': 'courses',
+        'columns': ('id INT PRIMARY KEY', 'classID INT', 'className VARCHAR(20)',),
+    },
 }
 
 cascade = {
